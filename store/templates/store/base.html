@@ -1,0 +1,29 @@
+<!-- store/templates/store/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}eBook Store{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'store/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the eBook Store</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'ebook_list' %}">eBooks</a></li>
+                <li><a href="{% url 'author_list' %}">Authors</a></li>
+                <li><a href="{% url 'category_list' %}">Categories</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2023 eBook Store</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!-- store/templates/store/ebook_list.html -->
+{% extends 'store/base.html' %}
+
+{% block title %}eBooks - eBook Store{% endblock %}
+
+{% block content %}
+<h2>eBook List</h2>
+<ul>
+    {% for ebook in ebooks %}
+    <li>
+        <h3>{{ ebook.title }}</h3>
+        <p>Author: {{ ebook.author.name }}</p>
+        <p>Price: ${{ ebook.price }}</p>
+        <p>Description: {{ ebook.description }}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
