@@ -7,14 +7,14 @@
 <p>Here are the categories of eBooks available in our store:</p>
 
 <ul>
-    <li>Fiction</li>
-    <li>Non-Fiction</li>
-    <li>Science Fiction</li>
-    <li>Fantasy</li>
-    <li>Mystery</li>
-    <li>Biography</li>
-    <li>Self-Help</li>
-    <li>Children's Books</li>
+    <li><a href="{% url 'category_detail' 'fiction' %}">Fiction</a></li>
+    <li><a href="{% url 'category_detail' 'non-fiction' %}">Non-Fiction</a></li>
+    <li><a href="{% url 'category_detail' 'science-fiction' %}">Science Fiction</a></li>
+    <li><a href="{% url 'category_detail' 'fantasy' %}">Fantasy</a></li>
+    <li><a href="{% url 'category_detail' 'mystery' %}">Mystery</a></li>
+    <li><a href="{% url 'category_detail' 'biography' %}">Biography</a></li>
+    <li><a href="{% url 'category_detail' 'self-help' %}">Self-Help</a></li>
+    <li><a href="{% url 'category_detail' 'childrens-books' %}">Children's Books</a></li>
 </ul>
 
 <p>Click on a category to explore the eBooks available in that category.</p>

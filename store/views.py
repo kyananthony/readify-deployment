@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import eBook, Author, Category
 from rest_framework import viewsets, generics
 from .serializers import eBookSerializer, AuthorSerializer, CategorySerializer
@@ -32,3 +32,8 @@ def author_list(request):
 def category_list(request):
     categories = Category.objects.all()
     return render(request, 'store/category_list.html', {'categories': categories})
+
+def category_detail(request, category_slug):
+    category = get_object_or_404(Category, slug=category_slug)
+    ebooks = eBook.objects.filter(category=category)
+    return render(request, 'store/category_detail.html', {'category': category, 'ebooks': ebooks})

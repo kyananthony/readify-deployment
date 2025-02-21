@@ -1,0 +1,14 @@
+{% extends 'store/base.html' %}
+
+{% block title %}{{ category.name }} - eBook Store{% endblock %}
+
+{% block content %}
+<h2>{{ category.name }}</h2>
+<p>Here are the eBooks available in the {{ category.name }} category:</p>
+
+<ul>
+    {% for ebook in ebooks %}
+    <li>{{ ebook.title }} by {{ ebook.author.name }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
