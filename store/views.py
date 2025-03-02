@@ -37,3 +37,16 @@ def category_detail(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
     ebooks = eBook.objects.filter(category=category)
     return render(request, 'store/category_detail.html', {'category': category, 'ebooks': ebooks})
+
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            login(request,user)
+            return redirect('store:home')
+    else:
+        form = RegistrationForm()
+    return render(request, 'store/register.html', {'form': form})
