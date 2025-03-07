@@ -1,9 +1,12 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from .models import eBook, Author, Category
 from rest_framework import viewsets, generics
 from .serializers import eBookSerializer, AuthorSerializer, CategorySerializer
 from django.http import HttpResponse
-
+from .forms import RegistrationForm
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages
 class eBookViewSet(viewsets.ModelViewSet):
     queryset = eBook.objects.all()
     serializer_class = eBookSerializer
@@ -50,3 +53,19 @@ def register(request):
     else:
         form = RegistrationForm()
     return render(request, 'store/register.html', {'form': form})
+def user_login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('store:home')
+        else:
+            messages.error(request, 'Invalid username or password.')
+            return redirect('store.home')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'store/login.html', {'form': form})
