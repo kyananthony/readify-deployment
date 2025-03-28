@@ -6,11 +6,15 @@
 <h2>Categories</h2>
 <p>Here are the categories of eBooks available in our store:</p>
 
+{% if categories %}
 <ul>
-    {% for category in categories %}
+    {% for category in categories|dictsort:"name" %}
         <li><a href="{% url 'store:category_detail' category.slug %}">{{ category.name }}</a></li>
     {% endfor %}
 </ul>
+{% else %}
+<p>No categories available.</p>
+{% endif %}
 
 <p>Click on a category to explore the eBooks available in that category.</p>
 {% endblock %}
